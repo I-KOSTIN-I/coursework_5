@@ -10,6 +10,7 @@ class BaseUnit(ABC):
     """
     Базовый класс юнита
     """
+
     def __init__(self, name: str, unit_class: UnitClass):
         """
         При инициализации класса Unit используем свойства класса UnitClass
@@ -24,19 +25,21 @@ class BaseUnit(ABC):
 
     @property
     def health_points(self):
-        return # TODO возвращаем аттрибут hp в красивом виде
+        return round(self.hp, 1)  # TODO возвращаем аттрибут hp в красивом виде
 
     @property
     def stamina_points(self):
-        return  # TODO возвращаем аттрибут hp в красивом виде
+        return round(self.stamina, 1)  # TODO возвращаем аттрибут hp в красивом виде
 
     def equip_weapon(self, weapon: Weapon):
         # TODO присваиваем нашему герою новое оружие
+        self.weapon = weapon
         return f"{self.name} экипирован оружием {self.weapon.name}"
 
     def equip_armor(self, armor: Armor):
         # TODO одеваем новую броню
-        return f"{self.name} экипирован броней {self.weapon.name}"
+        self.armor = armor
+        return f"{self.name} экипирован броней {self.armor.name}"
 
     def _count_damage(self, target: BaseUnit) -> int:
         # TODO Эта функция должна содержать:
@@ -88,6 +91,7 @@ class PlayerUnit(BaseUnit):
         f"{self.name} используя {self.weapon.name} наносит удар, но {target.armor.name} cоперника его останавливает."
         f"{self.name} попытался использовать {self.weapon.name}, но у него не хватило выносливости."
 
+
 class EnemyUnit(BaseUnit):
 
     def hit(self, target: BaseUnit) -> str:
@@ -103,5 +107,3 @@ class EnemyUnit(BaseUnit):
         f"{self.name} используя {self.weapon.name} пробивает {target.armor.name} и наносит Вам {damage} урона."
         f"{self.name} используя {self.weapon.name} наносит удар, но Ваш(а) {target.armor.name} его останавливает."
         f"{self.name} попытался использовать {self.weapon.name}, но у него не хватило выносливости."
-
-
