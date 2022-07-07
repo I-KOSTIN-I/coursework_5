@@ -71,9 +71,8 @@ class Equipment:
     @staticmethod
     def _get_equipment_data() -> EquipmentData:
         # TODO этот метод загружает json в переменную EquipmentData
-        with open("./data/equipment.json") as equipment_file:
+        with open("/Users/kostin/PycharmProjects/coursework_5/data/equipment.json") as equipment_file:
             data = json.load(equipment_file)
             equipment_schema = marshmallow_dataclass.class_schema(EquipmentData)
 
             return equipment_schema().load(data)
-

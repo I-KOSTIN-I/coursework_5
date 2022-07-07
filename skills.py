@@ -59,6 +59,8 @@ class FuryPunch(Skill):
         # TODO результат применения возвращаем строкой
         self.user.stamina -= self.stamina
         self.target.get_damage(self.damage)
+        return f'{self.user.name} применяет {self.name} и наносит {self.damage} урона противнику'
+
 
 class HardShot(Skill):
     name = "Мощный укол"
@@ -66,4 +68,6 @@ class HardShot(Skill):
     damage = 15
 
     def skill_effect(self):
-        pass
+        self.user.stamina -= self.stamina
+        self.target.get_damage(self.damage)
+        return f'{self.user.name} применяет {self.name} и наносит {self.damage} урона противнику'

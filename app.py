@@ -1,16 +1,17 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 from base import Arena
+from classes import unit_classes
+from equipment import Equipment
 from unit import BaseUnit
 
 app = Flask(__name__)
 
-heroes = {
-    "player": BaseUnit,
-    "enemy": BaseUnit
-}
+heroes = {}
 
 arena = Arena() # TODO инициализируем класс арены
+
+equipment = Equipment()
 
 
 @app.route("/")
@@ -61,7 +62,14 @@ def choose_hero():
     # TODO кнопка выбор героя. 2 метода GET и POST
     # TODO на GET отрисовываем форму.
     # TODO на POST отправляем форму и делаем редирект на эндпоинт choose enemy
-    pass
+    if request.method == 'GET':
+        result = {
+            'classes': unit_classes,
+            'weapons': equipment.get_weapons_names(),
+            'armors': equipment.get_armors_names(),
+            'header': "Выберите персонажа",
+        }
+        return render_template('hero_choosing.html', result=result)
 
 
 @app.route("/choose-enemy/", methods=['post', 'get'])
