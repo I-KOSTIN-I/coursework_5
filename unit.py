@@ -15,13 +15,13 @@ class BaseUnit(ABC):
         """
         При инициализации класса Unit используем свойства класса UnitClass
         """
-        self.name = ...
+        self.name = name
         self.unit_class = unit_class
         self.hp = unit_class.max_health
         self.stamina = unit_class.max_stamina
-        self.weapon = ...
-        self.armor = ...
-        self._is_skill_used = ...
+        self.weapon = None
+        self.armor = None
+        self._is_skill_used = False
 
     @property
     def health_points(self):
@@ -67,7 +67,7 @@ class BaseUnit(ABC):
 
         if damage > 0:
             self.hp -= damage
-            return damage
+            return round(damage, 1)
         return 0
 
     @abstractmethod

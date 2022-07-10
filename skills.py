@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from unit import BaseUnit
 
+
 class Skill(ABC):
     """
     Базовый класс умения

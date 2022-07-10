@@ -67,7 +67,7 @@ class Arena(metaclass=BaseSingleton):
         # TODO и вызываем функцию self.enemy.hit(self.player) - ответный удар врага
 
         result = self._check_players_hp()
-        if result is None:
+        if result is not None:
             return result
 
         if self.game_is_running:
@@ -98,7 +98,7 @@ class Arena(metaclass=BaseSingleton):
         # TODO включаем следующий ход
         # TODO возвращаем результат удара строкой
 
-        result = self.player_use_skill(self.enemy)
+        result = self.player.use_skill(self.enemy)
         turn_result = self.next_turn()
         return f'{result}\n{turn_result}'
 

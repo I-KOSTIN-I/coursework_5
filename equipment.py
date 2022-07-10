@@ -29,8 +29,8 @@ class Weapon:
 @dataclass
 class EquipmentData:
     # TODO содержит 2 списка - с оружием и с броней
-    weapons = List[Weapon]
-    armors = List[Armor]
+    weapons: List[Weapon]
+    armors: List[Armor]
 
 
 class Equipment:
